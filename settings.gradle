@@ -1,0 +1,3 @@
+include ':Plesus'
+include ':app'
+rootProject.name = "Pleasus App"

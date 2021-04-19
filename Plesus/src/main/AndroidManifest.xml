@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wineberryhalley.plesus">
+    <uses-permission android:name="android.permission.INTERNET"/>
+<application
+    android:usesCleartextTraffic="true">
+
+    <provider
+        android:name=".data.WineProvider"
+        android:authorities="${applicationId}.winprovider"
+        android:exported="false"
+        android:label="LentItemsProvider" />
+
+
+</application>
+</manifest>
