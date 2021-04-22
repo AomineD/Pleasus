@@ -1,6 +1,7 @@
 package com.wineberryhalley.plesus.extractor;
 
 import android.content.Context;
+import android.util.Log;
 
 public class ExtractorCore {
     public static String getFinalURL(String url, Context context){
@@ -29,9 +30,13 @@ public class ExtractorCore {
         else if (url.contains("prostream"))
             finalURL = Prostream.getFasterLink(url, context);
         else if (url.contains("streamtape")) {
+            Log.e("MAIN", "getFinalURL: si" );
             finalURL = Streamtape.getFasterLink(url, context);
 
+
             finalURL = Streamtape.getUrl(finalURL);
+            Log.e("MAIN", "getFinalURL: si"+finalURL );
+
         }
         else if (url.contains("supervideo"))
             finalURL = Supervideo.getFasterLink(url, context);
