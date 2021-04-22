@@ -75,7 +75,7 @@ public class Mixdrop {
                 for (DataNode node:
                      e.dataNodes()) {
                     if(node.getWholeData().contains("MDCore.ref")){
-                        Log.e("MAIN", "getFasterLink: ENCONTROOO" );
+                     //   Log.e("MAIN", "getFasterLink: ENCONTROOO" );
                         htm = node.getWholeData();
                         break;
                     }

@@ -30,7 +30,7 @@ public class MixDropAp {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, as, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "onResponse: as "+response );
+                //Log.e(TAG, "onResponse: as "+response );
                 try {
 
                     String[] spl = response.split("MDCore.wurl=\"");
