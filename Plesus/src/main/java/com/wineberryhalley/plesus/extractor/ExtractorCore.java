@@ -35,7 +35,7 @@ public class ExtractorCore {
 
 
             finalURL = Streamtape.getUrl(finalURL);
-            Log.e("MAIN", "getFinalURL: si"+finalURL );
+            Log.e("MAIN", "getFinalURL: si "+finalURL );
 
         }
         else if (url.contains("supervideo"))
@@ -67,6 +67,7 @@ public class ExtractorCore {
         else if (url.contains("vup"))
             finalURL = Vup.getFasterLink(url, context);
 
+        Log.e("MAIN", "getFinalURL: final is "+finalURL );
         return finalURL;
     }
 }

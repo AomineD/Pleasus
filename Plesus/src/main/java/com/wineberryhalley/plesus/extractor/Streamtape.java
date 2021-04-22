@@ -42,7 +42,7 @@ public class Streamtape
 
     public static String getUrl(String finalURL) {
         String[] html = finalURL.split("innerHTML");
-        Log.e("MAIN", "getUrl: "+html.length );
+      //  Log.e("MAIN", "getUrl: "+html.length );
         if (html.length > 3) {
 
 
