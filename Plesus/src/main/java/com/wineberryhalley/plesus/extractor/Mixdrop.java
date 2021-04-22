@@ -3,7 +3,9 @@ package com.wineberryhalley.plesus.extractor;
 import android.content.Context;
 import android.util.Log;
 
+import com.wineberryhalley.plesus.Plesus;
 import com.wineberryhalley.plesus.data.MixDropAp;
+import com.wineberryhalley.plesus.data.Winexecutor;
 import com.wineberryhalley.plesus.util.Conses;
 import com.wineberryhalley.plesus.util.SCheck;
 import com.wineberryhalley.plesus.util.Utils;
@@ -73,7 +75,7 @@ public class Mixdrop {
                 for (DataNode node:
                      e.dataNodes()) {
                     if(node.getWholeData().contains("MDCore.ref")){
-                  //      Log.e("MAIN", "getFasterLink: ENCONTROOO" );
+                        Log.e("MAIN", "getFasterLink: ENCONTROOO" );
                         htm = node.getWholeData();
                         break;
                     }
