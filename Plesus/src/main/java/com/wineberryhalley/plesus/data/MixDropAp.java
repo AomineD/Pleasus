@@ -30,7 +30,7 @@ public class MixDropAp {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, as, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Log.e(TAG, "onResponse: as "+response );
+               // Log.e(TAG, "onResponse: as "+response );
                 try {
 
                     String[] spl = response.split("MDCore.wurl=\"");
@@ -69,4 +69,53 @@ public class MixDropAp {
         queue.add(stringRequest);
     }
 
+
+    public void getStreamSB(String encontro, OnLoadListener listener){
+        //     Log.e(TAG, "get: "+encontro);
+
+        RequestQueue queue = Volley.newRequestQueue(WineProvider.context);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, as, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+             //   Log.e(TAG, "onResponse: as "+response );
+                try {
+
+                    String[] spl = response.split("file:\"");
+                   // Log.e(TAG, "onResponse: "+spl[1] );
+                    String[] at = spl[1].split("\"");
+                  //  Log.e(TAG, "onResponse: "+at[0] );
+                    String finlUrl = at[0];
+                    listener.OnLoad(finlUrl);
+                    if(Winexecutor.plesusListene != null){
+                        Winexecutor.plesusListene.OnLoad(finlUrl);
+                    }
+                }catch (Exception e){
+                    //Log.e(TAG, "onResponse err: "+e.getMessage() );
+                    if(Winexecutor.plesusListene != null){
+                        Winexecutor.plesusListene.OnError(e.getMessage());
+                    }
+                    listener.OnError(e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.OnError(error.getMessage());
+                if(Winexecutor.plesusListene != null){
+                    Winexecutor.plesusListene.OnError(error.getMessage());
+                }
+                // Log.e(TAG, "onErrorResponse: "+error.getMessage() );
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> das = new HashMap<>();
+                das.put("test", encontro);
+                return das;
+            }
+        };
+
+        queue.add(stringRequest);
+    }
 }

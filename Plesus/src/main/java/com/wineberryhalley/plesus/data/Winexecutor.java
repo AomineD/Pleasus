@@ -31,13 +31,10 @@ public class Winexecutor {
             public void run() {
                 try {
 
-              String url2 = ExtractorCore.getFinalURL(url, WineProvider.context);
+            ExtractorCore.getFinalURL(url, WineProvider.context, plesusListene);
 
 
             //        Log.e("MAIN", "run: executor url final "+url2 );
-
-              if(!url.contains("mixdrop"))
-              plesusListene.OnLoad(url2);
 
                 } catch (Exception e){
                     plesusListene.OnError(e.getMessage());

@@ -3,8 +3,10 @@ package com.wineberryhalley.plesus.extractor;
 import android.content.Context;
 import android.util.Log;
 
+import com.wineberryhalley.plesus.Plesus;
+
 public class ExtractorCore {
-    public static String getFinalURL(String url, Context context){
+    public static void getFinalURL(String url, Context context, Plesus.PlesusListener plesusListene){
         String finalURL = null;
         if(url.contains("mystream")){
             finalURL = Mystream.getFasterLink(url, context);
@@ -23,6 +25,8 @@ public class ExtractorCore {
             finalURL = Jetload.getFasterLink(url, context);
         else if (url.contains("mixdrop"))
             finalURL = Mixdrop.getFasterLink(url, context);
+        else if (url.contains("streamsb.net"))
+            finalURL = StreamSB.getFasterLink(url);
         else if (url.contains("mp4upload"))
             finalURL = Mp4upload.getFasterLink(url, context);
         else if (url.contains("openplay"))
@@ -66,13 +70,19 @@ public class ExtractorCore {
             finalURL = Vidoza.getFasterLink(url, context);
         else if (url.contains("vup"))
             finalURL = Vup.getFasterLink(url, context);
+        else{
+            if(finalURL == null){
+                finalURL = url;
+            }
+        }
 
     //    Log.e("MAIN", "getFinalURL: final is "+finalURL );
 
-        if(finalURL == null){
-            finalURL = url;
-        }
 
-        return finalURL;
+if(!url.contains("mixdrop") && !url.contains("streamsb.net")) {
+    Log.e("MAIN", "getFinalURL: "+finalURL );
+    plesusListene.OnLoad(finalURL);
+
+}
     }
 }
