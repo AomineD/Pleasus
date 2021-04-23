@@ -17,7 +17,7 @@ public class ExtractorCore {
             finalURL = Cloudvideo.getFasterLink(url, context);
         else if (url.contains("dood"))
             finalURL = Dood.getFasterLink(url, context);
-        else if (url.contains("fembed"))
+        else if (url.contains("fembed") || url.contains("pelispng.online"))
             finalURL = Fembed.getFasterLink(url, context);
         else if (url.contains("jawcloud"))
             finalURL = Jawcloud.getFasterLink(url, context);
@@ -80,7 +80,7 @@ public class ExtractorCore {
 
 
 if(!url.contains("mixdrop") && !url.contains("streamsb.net")) {
-    Log.e("MAIN", "getFinalURL: "+finalURL );
+  //  Log.e("MAIN", "getFinalURL: "+finalURL );
     plesusListene.OnLoad(finalURL);
 
 }
