@@ -68,6 +68,11 @@ public class ExtractorCore {
             finalURL = Vup.getFasterLink(url, context);
 
     //    Log.e("MAIN", "getFinalURL: final is "+finalURL );
+
+        if(finalURL == null){
+            finalURL = url;
+        }
+
         return finalURL;
     }
 }
