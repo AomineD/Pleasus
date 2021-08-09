@@ -1,17 +1,11 @@
 package com.wineberryhalley.plesus.extractor;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.wineberryhalley.plesus.Plesus;
 import com.wineberryhalley.plesus.data.MixDropAp;
-import com.wineberryhalley.plesus.data.Winexecutor;
+import com.wineberryhalley.plesus.data.UnPacker;
 import com.wineberryhalley.plesus.util.Conses;
-import com.wineberryhalley.plesus.util.SCheck;
-import com.wineberryhalley.plesus.util.Utils;
 
-import org.json.JSONObject;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.DataNode;
 import org.jsoup.nodes.Document;
@@ -26,13 +20,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Mixdrop {
-    public static String getFasterLink(String l, Context ctx){
-        String authJSON = SCheck.getCheckString(ctx);
-        l = l.replace("/f/", "/e/");
+public class PowVideo {
+    public static String getFasterLink(String l){
+
+
         Document document = null;
         String headers = "Referer@" + l;
-        Log.e("MAIN", "getFasterLink: "+l );
         Map<String, String> mapHeaders = new HashMap<>();
         ArrayList<String> hd = new ArrayList<>(Arrays.asList(headers.split("@")));
 
@@ -68,15 +61,15 @@ public class Mixdrop {
 
             Elements elements = document.body().getElementsByTag("script");
 
-            Log.e("MAIN", "getFasterLink: "+document.body() );
+            //    Log.e("MAIN", "getFasterLink: "+document.body() );
             String htm = "";
 
             for (Element e:
-                 elements) {
+                    elements) {
                 for (DataNode node:
-                     e.dataNodes()) {
-                    if(node.getWholeData().contains("MDCore.ref")){
-                     //   Log.e("MAIN", "getFasterLink: ENCONTROOO" );
+                        e.dataNodes()) {
+                    if(node.getWholeData().contains("eval(function")){
+                        //   Log.e("MAIN", "getFasterLink: ENCONTROOO" );
                         htm = node.getWholeData();
                         break;
                     }
@@ -85,10 +78,11 @@ public class Mixdrop {
 
             }
 
+            //  Log.e("MAIN", "getFasterLink: "+htm );
             if(!htm.isEmpty()) {
-                MixDropAp mixDropAp = new MixDropAp();
+                UnPacker unPacker = new UnPacker();
 
-                mixDropAp.get(htm, new MixDropAp.OnLoadListener() {
+                unPacker.executePowVideo(htm, new UnPacker.OnLoadListener() {
                     @Override
                     public void OnLoad(String response) {
 
@@ -96,12 +90,13 @@ public class Mixdrop {
 
                     @Override
                     public void OnError(String erno) {
-                        Log.e("MAIN", "OnError: "+erno );
+
                     }
                 });
+
             }
         } catch (Exception e) {
-           // Log.e("MAIN", "getFasterLink: "+e.getMessage() );
+            Log.e("MAIN", "getFasterLink: "+e.getMessage() );
         }
 
         return mp4;

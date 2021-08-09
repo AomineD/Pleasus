@@ -48,13 +48,14 @@ public class Streamtape
 
             String[] mem = html[3].split("';</script>");
 
-            //Log.e("MAIN", "getUrl: " + mem[0]);
+       //     Log.e("MAIN", "getUrl: " + mem[0]);
 
 
             String tra = mem[0].replace(" = \"//", "");
             tra = tra.replace("\" + '", "");
+            tra = tra.split("'.")[0];
 
-       //     Log.e("MAIN", "getUrl:"+tra);
+        //   Log.e("MAIN", "getUrl:"+tra);
 
 
             return "https://"+tra;

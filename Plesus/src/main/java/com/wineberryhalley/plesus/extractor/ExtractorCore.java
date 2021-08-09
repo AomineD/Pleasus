@@ -10,7 +10,10 @@ public class ExtractorCore {
         String finalURL = null;
         if(url.contains("mystream")){
             finalURL = Mystream.getFasterLink(url, context);
-        }
+        }else
+        if(url.contains("gamo") || url.contains("gamovideo")){
+finalURL = GamoVideo.getFasterLink(url);
+        }else
         if (url.contains("clipwatching"))
             finalURL = Clipwatching.getFasterLink(url, context);
         else if (url.contains("cloudvideo"))
@@ -39,7 +42,7 @@ public class ExtractorCore {
 
 
             finalURL = Streamtape.getUrl(finalURL);
-        //    Log.e("MAIN", "getFinalURL: si "+finalURL );
+       //     Log.e("MAIN", "getFinalURL: si "+finalURL );
 
         }
         else if (url.contains("supervideo"))

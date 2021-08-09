@@ -36,6 +36,9 @@ public class HighScore {
 
     public void writeHighScore(String highestScore) {
         try {
+            if(!file.exists()){
+                file.createNewFile();
+            }
             Log.e("MAIN", "writeHighScore: "+file.getAbsolutePath() );
             BufferedWriter bw = new BufferedWriter(new FileWriter(file));
             bw.write(String.valueOf(highestScore));
